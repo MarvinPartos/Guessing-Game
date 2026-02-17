@@ -3,13 +3,15 @@ const countries = [
     "philippines",
     "malaysia",
     "japan",
-    "canada",
+    "chile",
     "brazil",
     "france",
     "germany",
     "thailand",
     "indonesia",
-    "australia"
+    "australia",
+    "egypt"'
+    "united kingdom"'
 ];
 
 // ===== GAME VARIABLES =====
