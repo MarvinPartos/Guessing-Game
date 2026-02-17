@@ -1,8 +1,19 @@
-// ===== WORD LIST =====
-const words = ["apple", "banana", "grape", "orange", "mango"];
+// ===== COUNTRY LIST =====
+const countries = [
+    "philippines",
+    "malaysia",
+    "japan",
+    "canada",
+    "brazil",
+    "france",
+    "germany",
+    "thailand",
+    "indonesia",
+    "australia"
+];
 
 // ===== GAME VARIABLES =====
-let secretWord;
+let secretCountry;
 let attemptsLeft;
 const maxAttempts = 5;
 let gameOver = false;
@@ -16,14 +27,18 @@ const hint = document.getElementById("hint");
 
 // ===== START GAME =====
 function startGame(){
-    secretWord = words[Math.floor(Math.random() * words.length)];
+    secretCountry =
+        countries[Math.floor(Math.random() * countries.length)];
+
     attemptsLeft = maxAttempts;
     gameOver = false;
 
-    console.log("Secret word (for testing):", secretWord);
+    console.log("Secret country (for testing):", secretCountry);
 
     message.textContent = "";
-    hint.textContent = `Hint: The word starts with '${secretWord[0].toUpperCase()}'.`;
+    hint.textContent =
+        `Hint: The country starts with '${secretCountry[0].toUpperCase()}'.`;
+
     input.value = "";
     document.body.style.background = "#f4f4f4";
 }
@@ -32,14 +47,13 @@ function startGame(){
 function checkGuess(){
     if(gameOver) return;
 
-    // trim spaces & make lowercase
     let guess = input.value.trim().toLowerCase();
 
-    // decrease attempts even if empty (based on instructions)
     attemptsLeft--;
 
-    if(guess === secretWord){
-        message.textContent = "Congratulations! You guessed the secret word!";
+    if(guess === secretCountry){
+        message.textContent =
+            "Congratulations! You guessed the country!";
         document.body.style.background = "#b8f5b8";
         gameOver = true;
         return;
@@ -50,7 +64,7 @@ function checkGuess(){
             `Incorrect guess. You have ${attemptsLeft} attempts left. Try again!`;
     } else {
         message.textContent =
-            `Game over! The secret word was '${secretWord}'.`;
+            `Game over! The secret country was '${secretCountry}'.`;
         document.body.style.background = "#f5b8b8";
         gameOver = true;
     }
@@ -62,15 +76,13 @@ function checkGuess(){
 // ===== EVENTS =====
 submitBtn.addEventListener("click", checkGuess);
 
-// Enter key support
 input.addEventListener("keypress", function(e){
     if(e.key === "Enter"){
         checkGuess();
     }
 });
 
-// Restart game
 restartBtn.addEventListener("click", startGame);
 
-// initialize game
+// Start game
 startGame();
