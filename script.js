@@ -10,8 +10,8 @@ const countries = [
     "thailand",
     "indonesia",
     "australia",
-    "egypt"'
-    "united kingdom"'
+    "egypt",
+    "united kingdom"
 ];
 
 // ===== GAME VARIABLES =====
