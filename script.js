@@ -28,7 +28,8 @@ const message = document.getElementById("message");
 const hint = document.getElementById("hint");
 
 // ===== START GAME =====
-function startGame(){
+function startGame() {
+
     secretCountry =
         countries[Math.floor(Math.random() * countries.length)];
 
@@ -38,35 +39,37 @@ function startGame(){
     console.log("Secret country (for testing):", secretCountry);
 
     message.textContent = "";
+
     hint.textContent =
-        `Hint: The country starts with '${secretCountry[0].toUpperCase()}'.`;
+        `Hint: Starts with '${secretCountry[0].toUpperCase()}' • ${secretCountry.length} letters`;
 
     input.value = "";
     document.body.style.background = "#f4f4f4";
 }
 
 // ===== CHECK GUESS =====
-function checkGuess(){
-    if(gameOver) return;
+function checkGuess() {
+
+    if (gameOver) return;
 
     let guess = input.value.trim().toLowerCase();
 
     attemptsLeft--;
 
-    if(guess === secretCountry){
+    if (guess === secretCountry) {
         message.textContent =
-            "Congratulations! You guessed the country!";
+            "Congratulations! You guessed the secret word!";
         document.body.style.background = "#b8f5b8";
         gameOver = true;
         return;
     }
 
-    if(attemptsLeft > 0){
+    if (attemptsLeft > 0) {
         message.textContent =
             `Incorrect guess. You have ${attemptsLeft} attempts left. Try again!`;
     } else {
         message.textContent =
-            `Game over! The secret country was '${secretCountry}'.`;
+            `Game over! The secret word was '${secretCountry}'.`;
         document.body.style.background = "#f5b8b8";
         gameOver = true;
     }
@@ -78,13 +81,13 @@ function checkGuess(){
 // ===== EVENTS =====
 submitBtn.addEventListener("click", checkGuess);
 
-input.addEventListener("keypress", function(e){
-    if(e.key === "Enter"){
+input.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
         checkGuess();
     }
 });
 
 restartBtn.addEventListener("click", startGame);
 
-// Start game
+// ===== START GAME =====
 startGame();
